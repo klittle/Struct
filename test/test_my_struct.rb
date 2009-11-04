@@ -16,37 +16,41 @@
 $: << 'lib'
 
 require 'test/unit'
-require 'my_struct'
+require 'my_struct.rb'
 
 class TestMyStruct < Test::Unit::TestCase
+
   def setup
     @struct = MyStruct.new
+    #puts @struct.object_id 
+    #puts @struct.cats = "something happy"  
   end
 
   def test_initial_state
+    puts @struct.class
     assert @struct.empty?, "struct is initially empty"
-  end
-
-  def test_missing_attributes
-    assert_nil @struct.some_attribute, "missing attributes are nil"
-  end
-
-  def test_creating_attributes
-    @struct.cats = "awesome!"
-    assert_equal "awesome!", @struct.cats
-  end
-
-  def test_to_hash
-    expected = {
-      :cats => "seriously awesome you guys",
-      :dogs => "okay I guess",
-      :fish => "why?"
-    }
-
-    expected.each do |key, value|
-      @struct.send "#{key}=".intern, value
     end
-
-    assert_equal expected, @struct.to_hash
-  end
+  
+  # def test_missing_attributes
+  #   assert_nil @struct.some_attribute, "missing attributes are nil"
+  # end
+  # 
+  # def test_creating_attributes
+  #   @struct.cats = "awesome!"
+  #   assert_equal "awesome!", @struct.cats
+  # end
+  # 
+  # def test_to_hash
+  #   expected = {
+  #     :cats => "seriously awesome you guys",
+  #     :dogs => "okay I guess",
+  #     :fish => "why?"
+  #   }
+  # 
+  #   expected.each do |key, value|
+  #     @struct.send "#{key}=".intern, value
+  #   end
+  # 
+  #   assert_equal expected, @struct.to_hash
+  # end
 end
